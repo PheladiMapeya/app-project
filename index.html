@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="converter.js" defer></script>
+</head>
+<body>
+    <template id = "project-input">
+        <form>
+            <div class="header">
+                <h1>Currency Converter</h1>
+            </div>
+            <div class="form-control">
+                <label for="amount">Amount</label>
+                <input type = "text" id = "amount">
+            </div>
+            <div class="form-control">
+                <label for="from">From</label>
+                <select class="convertFrm" id="convertFrm">
+                    <option value="USD">USD</option>
+                    <option value="ZAR">ZAR</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="to">To</label>
+                <select class="convertTo" id="convertTo">
+                    <option value="USD">USD</option>
+                    <option value="ZAR">ZAR</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+
+            <button type = "submit">Convert</button>
+
+            
+
+        </form>
+    </template>
+    <div id="converter"></div>
+</body>
+</html>
