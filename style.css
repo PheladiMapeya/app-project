@@ -19,9 +19,21 @@ h1 {
     margin-top: 10px;
     
 }
-.Outresults {
-    height: 39px;
-   
+.results h1 {
+    border-style: hidden;
+    font-weight: normal;
+    font-size: 35px;
+    margin-right: 5px;
+}
+.results {
+    display: inline-block;
+    margin-bottom: 15px;  
+}
+.output {
+    display: inline-block;
+    margin-bottom: 15px; 
+    font-size: 30px;
+    margin-left: 0px;
 }
 .formControl {
     margin-bottom: 15px;
@@ -33,7 +45,7 @@ h1 {
 }
 
 button[type="reset"] {
-    margin-left: 350px;
+   float: right;
     
 }
 

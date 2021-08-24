@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="dist/converter.js" defer></script>
+    <script type="module" src="dist/bundle.js" defer></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -37,8 +37,9 @@
                     </select>
                 </div>
                  <button type = "button" class="btn btn-danger" id="buttonClick" >Convert</button>
-                 <input type="output" class="Outresults" id = "output" ></output> 
-                 <button type="reset" class="btn btn-outline-danger" >Reset</button>
+                 <div class="results" > <h1>Results =</h2></div>
+                 <div class="output" id= "results"></div>
+                 <button type="reset" class="btn btn-outline-danger" id="resetButton" >Reset</button>
 
             </div>
         </form>
@@ -73,18 +74,31 @@
                 document.getElementById('convertTo').innerHTML = html;
 
             };
-             
 
-             function convert(i,j) {
+            function convert() {
+                
 
-                 let results =
-                 amount.value * rates[arrKeys[i]] / rates[arrKeys[j]];
-                 output.innerHTML = results;
+                const convertFrmSelect = convertFrm.value;
+                const convertToSelect = convertTo.value;
 
-                 console.log(results) 
-            }
+                if(convertFrmSelect != convertToSelect ) {
+
+                    let results = amount.value * rates[convertToSelect] / rates[convertFrmSelect];
+
+                    document.getElementById('results').innerHTML = results;
+                }else {
+                alert("Choose Different Currency");
+                };
+
+            };
            
-            buttonClick.addEventListener('click', ()=> convert(1,0)); 
+            buttonClick.addEventListener('click', ()=> convert()); 
+
+            function clear() {
+                document.getElementById('results').innerHTML = " ";
+            }
+            resetButton.addEventListener('click', ()=> clear());
+
 
         };
 
