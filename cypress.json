@@ -1,4 +1,4 @@
 {
-    "baseUrl": "http://localhost:8082",
-    "setTimeOut": 100000
+    "baseUrl": "http://localhost:8082"
+    
 }
