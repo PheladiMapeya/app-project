@@ -37,7 +37,7 @@
                     </select>
                 </div>
                  <button type = "button" class="btn btn-danger" id="buttonClick" >Convert</button>
-                 <div class="results" > <h1>Results =</h2></div>
+                 <div class="results" > <h1>Results =</h1></div>
                  <div class="output" id= "results"></div>
                  <button type="reset" class="btn btn-outline-danger" id="resetButton" >Reset</button>
 
@@ -46,67 +46,74 @@
     </template>
     <div id="converter"></div>
     
-    <script>
 
-        const API_URL = "https://v6.exchangerate-api.com/v6/6d8e2e3d04e43af66ea78316/latest/USD";
-
-        async function currency() {
-            
-            const res = await fetch(API_URL);
-            //console.log(res);
-            const data = await res.json();
-            //console.log(data.conversion_rates)
-            const arrKeys = Object.keys(data.conversion_rates);
-            //console.log(arrKeys)
-            const rates = data.conversion_rates;
-            //console.log(rates)
-
-           const newArray = arrKeys.map(item =>{
-               return `<option value=${item}>${item}</option>`;
-            });
-
-            let html = '';
-            for(let i=0; i<newArray.length; i++){
-                //debugger;  
-               
-                html += newArray[i];
-                document.getElementById('convertFrm').innerHTML = html;
-                document.getElementById('convertTo').innerHTML = html;
-
-            };
-
-            function convert() {
-                
-
-                const convertFrmSelect = convertFrm.value;
-                const convertToSelect = convertTo.value;
-
-                if(convertFrmSelect != convertToSelect ) {
-
-                    let results = amount.value * rates[convertToSelect] / rates[convertFrmSelect];
-
-                    document.getElementById('results').innerHTML = results;
-                }else {
-                alert("Choose Different Currency");
-                };
-
-            };
-           
-            buttonClick.addEventListener('click', ()=> convert()); 
-
-            function clear() {
-                document.getElementById('results').innerHTML = " ";
-            }
-            resetButton.addEventListener('click', ()=> clear());
-
-
-        };
-
-        currency();
-    </script>
  
      <!-- Option 1: Bootstrap Bundle with Popper -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
 </body>
+<script>
+
+    const API_URL = "http://data.fixer.io/api/latest?access_key=2f8b74b8c44a0954c4657d8275bda1b4";
+
+   async function currency() {
+
+        const res = await fetch(API_URL);
+        //console.log(res);
+        const data = await res.json();
+        //console.log(data.conversion_rates)
+        const arrKeys = Object.keys(data.rates);
+        //console.log(arrKeys)
+        const rates = data.rates;
+        //console.log(rates)
+
+        resultDis =  document.getElementById('results');
+        convertFrom = document.getElementById('convertFrm');
+        convertToCr = document.getElementById('convertTo');
+
+       const newArray = arrKeys.map(item =>{
+           return `<option value=${item}>${item}</option>`;
+        });
+
+        let html = '';
+        for(let i=0; i<newArray.length; i++){
+            // debugger;  
+           
+            html += newArray[i];
+            
+            convertFrom.innerHTML = html;
+            convertToCr.innerHTML = html;
+
+        };
+
+        function convert() {
+            
+
+            const convertFrmSelect = convertFrm.value;
+            const convertToSelect = convertTo.value;
+
+            if(convertFrmSelect != convertToSelect ) {
+
+                let results = (amount.value * (rates[convertToSelect] / rates[convertFrmSelect])).toFixed(2);
+
+                resultDis .innerHTML = results;
+            }else {
+            alert("Choose Different Currency");
+            };
+
+        };
+       
+        buttonClick.addEventListener('click', ()=> convert()); 
+
+        function clear() {
+            
+            resultDis .innerHTML = " ";
+        }
+        resetButton.addEventListener('click', ()=> clear());
+
+
+    };
+
+    currency();
+</script>
 </html>
